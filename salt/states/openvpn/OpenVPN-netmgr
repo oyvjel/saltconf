@@ -1,0 +1,28 @@
+[connection]
+id=VPN-{{ server }}
+uuid=e2795028-6f53-4691-96ff-809a3366c858
+type=vpn
+# permissions=user:oyvind:;
+autoconnect=false
+timestamp=1391095937
+
+[vpn]
+service-type=org.freedesktop.NetworkManager.openvpn
+connection-type=tls
+remote={{ server }}
+comp-lzo=yes
+cert-pass-flags=0
+{% if proto == 'tcp'%}
+proto-tcp=yes
+{% endif %}
+port={{port}}
+cert=/etc/openvpn/{{id}}.crt
+key=/etc/openvpn/{{id}}.key
+ca=/etc/openvpn/ca.crt
+
+[vpn-secrets]
+no-secret=true
+
+[ipv4]
+method=auto
+never-default=true

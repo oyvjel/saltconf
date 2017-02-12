@@ -1,0 +1,13 @@
+# Redmine logrotate settings
+# based on: http://stackoverflow.com/a/4883967
+
+/home/redmine/redmine/log/*.log {
+    weekly
+    missingok
+    rotate 52
+    compress
+    delaycompress
+    notifempty
+    copytruncate
+}
+

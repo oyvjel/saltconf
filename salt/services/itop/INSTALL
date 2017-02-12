@@ -1,0 +1,26 @@
+Prerequisites:
+		 
+TeemIp 2.0.2-rc module requires an iTop instance, version 2.0.3 minimum:
+- currently up and running
+- or on the point to be installed together with TeemIp extension.
+
+All iTop requirements do remain necessary to install TeemIp as an iTop module.
+
+Installation:
+
+1. Unzip the distribution (be sure to unzip the subdirectories) and copy the
+   content of the "web" directory in your webserver's document root. TeemIp 
+   modules shoud appear in the web/extensions/ directory. If you don't have 
+   direct access to the web server's file system, put the files in a directory 
+   on your local machine and transfer the content of the directory on your web 
+   server using, for example, ftp.
+
+2. Ensure that all the scripts have the appropriate owner (if PHP is running in
+   safe mode, having some scripts with an owner different from the owner of
+   other scripts will be a problem).
+
+3. If you add TeemIp modules to an already installed iTop application, make sure
+   that the file web/conf/production/config-itop.php is r/w.
+
+4. Open the main iTop directory in your web browser and follow the installation
+   instructions.

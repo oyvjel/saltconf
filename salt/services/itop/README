@@ -1,0 +1,153 @@
+TeemIp as an iTop module - version 2.0.2-rc - 01-Oct-2014
+Readme file
+
+1.   ABOUT THIS RELEASE
+2.   INSTALLATION
+2.1. Requirements
+2.2. Install procedure
+3.   FEATURES
+3.1. Changes since 2.0.1
+3.2. Known limitations
+3.3. Known issues
+
+
+1. ABOUT THIS RELEASE
+   ==================
+This package is the module version of TeemIp release 2.0.2-rc. It contains all what is necessary to include TeemIp's 
+IP management modules into iTop applicationn, version 2.0.2 minimum.
+
+TeemIp's documentation can be found at: http://sourceforge.net/p/teemip/wiki/Home/.
+iTop's documentation is available as a Wiki at: http://www.combodo.com/wiki
+
+TeemIp is released under the AGPL (v3) license. (Check license.txt in this directory).
+The source code of TeemIp can be found on SourceForge: http://teemip.sourceforge.net
+
+1.1 What's new?
+    -----------
+A few enhancements and new features have been brought to this version, namely:
+
+Since 2.0.1:
+- a couple of bug fixes
+- new attributes to WAN links
+- a new typology element to document types ofv WAN links
+- the usage of organizations for registrars, carriers or providers
+- autocompletion feature for IPv6 addresses
+
+1.2 Special Thanks To:
+    ------------------
+Michael Blank from ITOMIG GmbH for his German translation.
+The Combodo team: Denis Flaven, Romain Quetiez and Erwan Taloc.
+
+
+2. INSTALLATION
+   ============
+
+2.1. Requirements
+     ------------
+iTop configuration:
+TeemIp 2.0.2-rc requires iTop 2.0.3 minimum.
+ 
+Server configuration:
+TeemIp as an iTop module doesn't require anything more than what iTop requires.
+
+End-user configuration:
+Although TeemIp should work with most modern web browsers, the application has been tested mostly with Firefox 3, 
+IE8, IE9, Safari 5 and Chrome. TeemIp was designed for at least a 1024x768 screen resolution.
+
+
+2.2. Install procedure
+     -----------------
+1) Unpack the files contained in the zipped package, and copy the content of the "web" directory into your current
+   iTop web diretory. TeemIp directories should appear in the web/extensions directory. 
+2) Make sure that the configuration file located at web/conf/production/config-itop.php is writable by the 
+   web server (on Windows: remove the "read-only" flag, on Linux adjust the rights of the file).
+3) Re-launch the installation process by pointing your browser to web/setup/ and follow the indications on the 
+   screen. 
+
+That's it.
+
+
+3. FEATURES
+   ========
+
+3.1. Changes since 2.0.1
+     -------------------
+WAN Links
+---------
+- WAN link types are now typology elements and the "Type" attribute is selected through a combo box.
+- Next to the attribute "Rate", you can now document a "Burst Rate" and an "Underlying Rate".
+- The "Carrier" attribute is no longer a text field but a pointer to an Organisation. That should ease management of
+links provided by a given carrier.
+- Next to the carrier reference, an internal reference can be documented.
+- A new "Move to production date" can be registered.
+- A new "Decommissioning date" attribute will tell you when your links has been obsoleted.
+
+AS Numbers
+----------
+- "Registrar" of an AS number no longer is a text field but a pointer to an organization.
+                
+Domain Names
+------------
+- The "Internet Registrar" of a domain is no longer a text field but a pointer to an organization.
+                
+IP Blocks
+---------
+- An allocation date can now be registered for Blocks . This new attribute is automatically updated when object is created.
+- Some autocompletion feature has been added to ease the handling of IPv6 addresses.
+
+IP Subnets
+----------
+- An allocation date can now be registered for Subnets . This new attribute is automatically updated when object is created.
+- Subnet calculator gives now the IP of the previous and next subnets (if any) of the same size.
+- Some autocompletion feature has been added to ease the handling of IPv6 addresses.
+
+IP Ranges
+---------
+- An allocation date can now be registered for Ranges . This new attribute is automatically updated when object is created.
+- Some autocompletion feature has been added to ease the handling of IPv6 addresses.
+
+IP Addresses
+------------
+- Contacts and documents can now be attached to an IP address
+
+IP Objects
+----------
+- Allocation and release dates have been moved to abstract class IP Object. In order to ease the migration, a procedure is 
+executed when the TeemIp is upgraded to move these 2 attributes from leave classes to the IP Object one.
+ 
+IP Requests
+-----------
+- When a request for a new IP is created (directly or through the portal), requestors may ask to attach the IP to a specific 
+device. If the IP is a management IP, device's attribute is automatically updated. If it is part of a physical or logical 
+interface attached to the device, it remains up to the agent handling the ticket to create the interface. 
+- Contact tab now appears in the detail of an IP ticket.
+- On the portal, the list of attributes of the search filter has been extended.
+
+Miscellaneous fixes
+-------------------
+- Creating a delegated block directly from the block creation page was displaying a fatal error window, though the delegated 
+block was created.
+- Calculation of CIDR alignement for subnets was not working well.
+- Display of CSV IPs within subnets and ranges was not working anymore due to an obsolete IP address attribute.
+- Automatic calculation of IP range when new IP is created has been fixed.
+
+Localization
+------------
+TeemIp is available in German, English and French!
+
+Because TeemIp relies on iTop and because iTop is available in 11 different languages, TeemIp could be available within 
+the same languages at a translation cost that is not too high. Indeed, less than 1500 entries that are specific to 
+TeemIp modules need to be translated. Should you volunteer to translate TeemIp modules, please, contact 
+xtophe38@users.sourceforge.net. I'll provide you with the files that need translation.
+
+
+3.4. Known limitations (https://sourceforge.net/p/)
+     -----------------
+- when attaching an IP address to a physical or virtual interface, all IPs from all organizations can be used.
+
+
+3.5. Known issues (https://sourceforge.net/p/teemip/tickets/)
+     ------------
+#1 Deleting a cascaded list of subnet blocks will generate an exception and all blocks won't be delete as requested. 
+However, system will not be affected and operations can continue. This bug comes from the deletion policy for the 
+type of hierarchical key used to define subnet blocks.

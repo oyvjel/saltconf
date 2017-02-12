@@ -1,0 +1,46 @@
+{% set package_table = {
+    'Debian': {'salt-master': 'salt-master',
+               'salt-minion': 'salt-minion',
+               'salt-syndic': 'salt-syndic',
+               'salt-cloud': 'salt-cloud'},
+    'Ubuntu': {'salt-master': 'salt-master',
+               'salt-minion': 'salt-minion',
+               'salt-syndic': 'salt-syndic',
+               'salt-cloud': 'salt-cloud'},
+    'CentOS': {'salt-master': 'salt-master',
+               'salt-minion': 'salt-minion',
+               'salt-syndic': 'salt-syndic',
+               'salt-cloud': 'salt-cloud'},
+    'Amazon': {'salt-master': 'salt-master',
+               'salt-minion': 'salt-minion',
+               'salt-syndic': 'salt-syndic',
+               'salt-cloud': 'salt-cloud'},
+    'Fedora': {'salt-master': 'salt-master',
+               'salt-minion': 'salt-minion',
+               'salt-syndic': 'salt-syndic',
+               'salt-cloud': 'salt-cloud'},
+    'RedHat': {'salt-master': 'salt-master',
+               'salt-minion': 'salt-minion',
+               'salt-syndic': 'salt-syndic',
+               'salt-cloud': 'salt-cloud'},
+    'Gentoo': {'salt-master': 'app-admin/salt',
+               'salt-minion': 'app-admin/salt',
+               'salt-syndic': 'app-admin/salt',
+               'salt-cloud': 'app-admin/salt'},
+    'Arch':   {'salt-master': 'salt',
+               'salt-minion':  'salt',
+               'salt-syndic':  'salt',
+               'salt-cloud':  'salt'},
+    'Windowsi386':{'salt-master': 'salt-master-32',
+               'salt-minion':  'salt-minion-32'},
+    'WindowsAMD64':{'salt-master': 'salt-master-64',
+               'salt-minion':  'salt-minion-64'}
+} %}
+
+{% if 'package_table' in pillar %}
+    {% set pkgs = pillar['package_table'] %}
+{% elif grains['os'] in package_table %}
+    {% set pkgs = package_table[grains['os']] %}
+{% elif grains['os'] + grains['cpuarch'] in package_table %}
+    {% set pkgs = package_table[grains['os'] + grains['cpuarch']] %}
+{% endif %}

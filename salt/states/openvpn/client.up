@@ -1,0 +1,33 @@
+#!/bin/sh
+# route add -net 10.0.0.0 netmask 255.255.255.0 gw $5
+
+
+#echo $@ > /tmp/openvpn
+#echo $_ >> /tmp/openvpn
+
+#/sbin/iptables -F
+/sbin/iptables -F FORWARD
+/sbin/iptables -t nat -F
+#/sbin/iptables -X
+/sbin/iptables -t nat -X
+
+/sbin/iptables -P FORWARD DROP 
+echo "1" > /proc/sys/net/ipv4/ip_forward
+
+# Dont filter bridged internal interfaces
+echo "0" >/proc/sys/net/bridge/bridge-nf-call-iptables 
+
+#/sbin/iptables -I INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT 
+/sbin/iptables -I FORWARD -m state --state ESTABLISHED,RELATED -j ACCEPT 
+#/sbin/iptables -I OUTPUT -m state --state ESTABLISHED,RELATED -j ACCEPT 
+
+
+# Translate packets, not necessary, nat i avsender-gw.
+#/sbin/iptables -t nat -A POSTROUTING -s 192.168.220.0/24 -d 0.0.0.0/0.0.0.0 -p 0 -j MASQUERADE
+# Forward packets
+#/sbin/iptables -A FORWARD -i $1 -s 192.168.220.0/24 -d 0.0.0.0/0.0.0.0 -p 0 -j ACCEPT
+
+# Translate packets
+/sbin/iptables -t nat -A POSTROUTING -s 10.1.0.0/24 -d 0.0.0.0/0.0.0.0 -p 0 -j MASQUERADE
+# Forward packets
+/sbin/iptables -A FORWARD  -i $1 -s 10.1.0.0/24 -d 0.0.0.0/0.0.0.0 -p 0 -j ACCEPT
