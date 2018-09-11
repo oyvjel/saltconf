@@ -27,7 +27,7 @@ base:
 
   'kernel:Linux':
     - match: grain
-    - linux
+    - linoj
     
   'kernel:windows':
     - match: grain
@@ -35,23 +35,23 @@ base:
 
   'role:linux-development':
     - match: pillar
-    - linux.development
+    - linoj.development
 
   'I@role:development and G@kernel:Linux':
     - match: compound
-    - linux.development
+    - linoj.development
 
   'I@role:desktop and G@kernel:Linux':
     - match: compound
-    - linux.desktop
+    - linoj.desktop
 
   'G@roles:development and G@kernel:Linux':
     - match: compound
-    - linux.development
+    - linoj.development
 
   'G@roles:desktop and G@kernel:Linux':
     - match: compound
-    - linux.desktop
+    - linoj.desktop
 
   '*-kvm-*':
     - states.kvm

@@ -1,8 +1,8 @@
 #Formulas to install and set up packages:
 include:
-  - linux.hostname
-#  - linux.users.oyvind  
-#  - linux.users.hitadmin
+  - linoj.hostname
+#  - linoj.users.oyvind  
+#  - linoj.users.hitadmin
   - users
   - openssh
   - network.interfaces
@@ -34,7 +34,7 @@ corepkgs:
 /etc/security/limits.d/99-local:
   file:
     - managed
-    - source: salt://linux/limits.conf
+    - source: salt://linoj/limits.conf
     - user: root
     - group: root
     - mode: 644
@@ -42,7 +42,7 @@ corepkgs:
 /usr/local/bin/logout.sh:
   file:
     - managed
-    - source: salt://linux/logout.sh
+    - source: salt://linoj/logout.sh
     - user: root
     - group: root
     - mode: 755
