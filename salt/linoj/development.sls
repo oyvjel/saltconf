@@ -33,7 +33,7 @@ developmentpkgs:
       - ecryptfs-utils
       # TODO: - skype
       - nmap
-      - libghc-xmonad-dev
-      - libghc-xmonad-contrib-dev
+#      - libghc-xmonad-dev
+#      - libghc-xmonad-contrib-dev
       # TODO: clojure & leiningen
 #      - openjdk-7-jdk

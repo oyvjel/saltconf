@@ -12,3 +12,8 @@ desktoppkgs:
       - vim
 #      - git
 #      - ssh
+
+vm.swappiness:
+  sysctl.present:
+    - value: 10
+

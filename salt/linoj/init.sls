@@ -5,11 +5,13 @@ include:
 #  - linoj.users.hitadmin
   - users
   - openssh
+{% if salt['pillar.get']('network') %} 
   - network.interfaces
   - network.resolver
   - network.routes
   - network.hosts
-  
+{% endif %}
+
 # Handled in top.sls, pointing to <role>.sls
 #{% if salt['pillar.get']('role','prod') == 'development' %}
 #  - states.vim
@@ -23,13 +25,15 @@ corepkgs:
       - aptitude
       - byobu
       - htop
-      - realpath
+#      - realpath # in coreutils
+      - coreutils
       - screen
       - sudo
       - tmux
       - vim
-
-
+#      - webmin
+#      - libnet-interface-perl
+#      - libnet-netmask-perl
  
 /etc/security/limits.d/99-local:
   file:

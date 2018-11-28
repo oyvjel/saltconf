@@ -33,6 +33,10 @@ base:
     - match: grain
     - win
 
+  'munin_node:*':
+    - match: pillar
+    - munin.node.config
+
   'role:linux-development':
     - match: pillar
     - linoj.development
