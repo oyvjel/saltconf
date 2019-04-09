@@ -1,6 +1,7 @@
 base:
   '*':
     - salt.minion
+    - roles
     - all
     - cmdb
     - services
@@ -37,28 +38,36 @@ base:
     - match: pillar
     - munin.node.config
 
-  'role:linux-development':
+#  'role:linux-development':
+#    - match: pillar
+#    - linoj.development
+
+#  'I@role:development and G@kernel:Linux':
+#    - match: compound
+#    - linoj.development
+
+# Roles from grains. Can be set on the minion side.
+#  { set roles = salt['pillar.get']('role',[]) eller salt['grains.get']('roles',[])  }
+  {% set roles = salt['grains.get']('roles',[]) -%}
+  {% for role in roles -%}
+  'roles:{{ role }}':
+    - match: grain
+    - roles.{{ role }}
+  {% endfor -%}
+
+# Roles from pillars. 
+
+#  { set roles = salt['pillar.get']('role',[]) eller salt['grains.get']('roles',[])  }
+  {% set roles = salt['pillar.get']('role',[]) -%}
+  {% for role in roles -%}
+  'role:{{ role }}':
     - match: pillar
-    - linoj.development
+    - roles.{{ role }}
+  {% endfor -%}
+  
 
-  'I@role:development and G@kernel:Linux':
-    - match: compound
-    - linoj.development
 
-  'I@role:desktop and G@kernel:Linux':
-    - match: compound
-    - linoj.desktop
 
-  'G@roles:development and G@kernel:Linux':
-    - match: compound
-    - linoj.development
-
-  'G@roles:desktop and G@kernel:Linux':
-    - match: compound
-    - linoj.desktop
-
-  '*-kvm-*':
-    - states.kvm
 
 #   Move to product. Specify product itop in pillar for host.
 #  'itop*':

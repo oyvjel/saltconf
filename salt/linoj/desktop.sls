@@ -10,10 +10,12 @@ desktoppkgs:
   pkg.installed:
     - names:
       - vim
+      - gnome
 #      - git
 #      - ssh
 
+# 60 is default. Desktop could benefit from lower ( 10?). Should be a pillar value.
 vm.swappiness:
   sysctl.present:
-    - value: 10
+    - value: 60
 

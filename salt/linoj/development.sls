@@ -28,7 +28,7 @@ developmentpkgs:
 #      - qemu-kvm-spice
 #      - python-spice-client-gtk
 #      - libvirt-bin
-#      - virt-manager
+      - virt-manager
       - virt-viewer
       - ecryptfs-utils
       # TODO: - skype

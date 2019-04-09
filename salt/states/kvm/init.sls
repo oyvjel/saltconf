@@ -2,19 +2,23 @@ kvm-packages:
   pkg.installed:
     - pkgs:
       - bridge-utils
-      - libvirt-bin
+#      - libvirt-bin
+      - libvirt-daemon-system
+      - libvirt-clients
       - virt-goodies
       - virt-manager
       - virt-top
       - virtinst
       - virt-viewer
       - vlan
-      - guestfish
+#      - guestfish
       - guestfsd
-      - guestmount
+#      - guestmount
+      - libguestfs-tools
       - lvm2
       - nfs-common
       - qemu-kvm
+      - qemu-utils
       - python-libvirt
       - munin-libvirt-plugins
       - munin-node
@@ -52,17 +56,20 @@ kvm-packages:
 #    - watch: 
 #      - file: /etc/libvirt/qemu.conf
 
-vm.swappiness:
-  sysctl.present:
-    - value: 0
+###  Makes sense only with huge ram:
+#vm.swappiness:
+#  sysctl.present:
+#    - value: 0
 
-vm.zone_reclaim_mode:
-  sysctl.present:
-    - value: 0
+#vm.zone_reclaim_mode:
+#  sysctl.present:
+#    - value: 0
 
-net.bridge.bridge-nf-call-arptables:
-  sysctl.present:
-    - value: 0
+#Virkeer ikke: net.bridge.bridge-nf-call-arptables:
+#  sysctl.present:
+#    - value: 0
+
+
 /hugepages:
   mount.mounted:
     - device: hugetlbfs
