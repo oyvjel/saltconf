@@ -11,7 +11,7 @@ include:
 ##### Log actions on each minion in /root/saltdoc/installed_products.rs
 ## TODO: Windows file ??
 
-### Virker ikke, får ikke opprettet fila????
+### Virker ikke, faar ikke opprettet fila????
 /root/saltdoc/installed_products.rst:
   file.managed:
     - makedirs: True

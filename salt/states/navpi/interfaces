@@ -1,0 +1,32 @@
+auto lo
+iface lo inet loopback
+
+auto ap0
+#allow-hotplug ap0
+iface ap0 inet static
+    address 192.168.20.1
+    netmask 255.255.255.0
+##    post-up /usr/sbin/hostapd -B /etc/hostapd/oj.conf
+
+
+#auto wlan0
+allow-hotplug cl0
+# iface wlanc inet manual
+iface cl0 inet dhcp
+    wpa-ssid djc
+    wpa-psk kokayoko
+
+##   wpa-psk 9a0d254fa21b1095faee4eadfca31e05cf231258f2c6b2c139dfb37e08f74936
+
+# su -c "wpa_passphrase myssid my_very_secret_passphrase"
+#    wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf
+
+allow-hotplug eth0
+# auto eth0
+iface eth0 inet dhcp
+
+
+
+#iface AP1 inet dhcp
+#iface HomeTalk inet dhcp
+#iface default inet dhcp

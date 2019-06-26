@@ -3,10 +3,10 @@
 salt-master:
   pkg.installed:
     - name: {{ pkgs['salt-master'] }}
-  file.managed:
-    - name: /etc/salt/master
-    - template: jinja
-    - source: salt://salt/files/master
+#  file.managed:
+#    - name: /etc/salt/master
+#    - template: jinja
+#    - source: salt://salt/files/master
   service.running:
     - enable: True
     - watch:

@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# See https://api.met.no/weatherapi/gribfiles/1.1/documentation
+mkdir -p ~/Grib
+cd ~/Grib
+
+wget --backups=2 -N 'https://api.met.no/weatherapi/gribfiles/1.1/?area=oslofjord&content=weather'
+wget --backups=2 -N 'https://api.met.no/weatherapi/gribfiles/1.1/?area=oslofjord&content=current'
+wget --backups=2 -N 'https://api.met.no/weatherapi/gribfiles/1.1/?area=oslofjord&content=waves'
+
+wget --backups=2 -N 'https://api.met.no/weatherapi/gribfiles/1.1/?area=sorlandet&content=weather'
+wget --backups=2 -N 'https://api.met.no/weatherapi/gribfiles/1.1/?area=sorlandet&content=current'
+wget --backups=2 -N 'https://api.met.no/weatherapi/gribfiles/1.1/?area=sorlandet&content=current'
+# wget --backups=2 -N https://api.met.no/weatherapi/gribfiles/1.1/?area=skagerrak&content=waves
+
+wget --backups=2 -N 'https://api.met.no/weatherapi/gribfiles/1.1/?area=skagerrak&content=weather'
+wget --backups=2 -N 'https://api.met.no/weatherapi/gribfiles/1.1/?area=skagerrak&content=current'
+wget --backups=2 -N 'https://api.met.no/weatherapi/gribfiles/1.1/?area=skagerrak&content=waves'
+
+#wget --backups=2 -N 'http://api.met.no/weatherapi/gribfiles/1.1/?area=n-northsea;content=weather'

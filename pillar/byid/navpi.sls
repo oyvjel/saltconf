@@ -1,7 +1,8 @@
 include:
   - user.oyvind
   
-#role:
+role:
+  - navpi
 #  - development
 #  - desktop
 

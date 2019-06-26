@@ -1,0 +1,18 @@
+#!/bin/sh
+
+#xrdb $HOME/.Xresources
+xsetroot -solid grey
+
+#x-terminal-emulator -geometry 80x24+10+10 -ls -title "$VNCDESKTOP Desktop" &
+#x-window-manager &
+# Fix to make GNOME work
+# export XKL_XMODMAP_DISABLE=1
+
+# /usr/local/bin/opencpn &
+
+#Endless loop restarting the window manager whenever a user logs out of the window manager.
+while :
+do
+#    e16
+    /etc/X11/Xsession
+done

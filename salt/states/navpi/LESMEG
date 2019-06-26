@@ -1,0 +1,43 @@
+
+WiFi:
+AP + client
+
+AP: på wlan0.
+iface wlan0 inet static
+    address 192.168.20.1
+    netmask 255.255.255.0
+    post-up /usr/sbin/hostapd -B /etc/hostapd/oj.conf
+
+dnsmasq server dhcp og dns.
+OK!
+
+Prøver å opprette wlanc for client:
+
+iw phy phy0 interface add wlanc type managed
+
+Kan kjøre klient med dhc, men BARE om AP er stoppet først.
+
+Finner ingen måte å kjøre begge parall.
+
+Prøvd å sette identisk mac på wlanc som på wlan0, men da feiler wpa_supplicant.
+
+Ruting fra AP nett til internett over eth0 er OK ( NAT på ekstern ruter)
+
+-----------
+Konfigurerer kun AP ved boot. Reboot: VIRKER IKKE!
+
+wlan0 tilsynelatende OK, men ingen trafikk til if. ( tcpdump)
+Følgende sekvens får dette igang igjen:
+
+ifdown --force wlan0
+kill -9 705  # PID of hostapd
+ifup wlan0
+
+-------------
+
+Redone: byttet ti ap0.
+Fant feil: hostapd startes via /etc/init.d/hostapd og refererrer til både /etc/hosta�pd.con og /etc/hostapd/oj.conf. Slettet første fer og da funker det!
+
+
+
+
