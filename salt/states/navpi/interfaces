@@ -2,7 +2,7 @@ auto lo
 iface lo inet loopback
 
 auto ap0
-#allow-hotplug ap0
+allow-hotplug ap0
 iface ap0 inet static
     address 192.168.20.1
     netmask 255.255.255.0
@@ -10,7 +10,7 @@ iface ap0 inet static
 
 
 #auto wlan0
-allow-hotplug cl0
+#allow-hotplug cl0
 # iface wlanc inet manual
 iface cl0 inet dhcp
     wpa-ssid djc

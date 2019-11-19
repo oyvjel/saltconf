@@ -74,6 +74,7 @@ navpipkgs:
     - names:
       - build-essential
       - curl
+      - lxde
       - dialog
       - wpasupplicant
       - dnsmasq
@@ -84,6 +85,13 @@ navpipkgs:
       - gpsd
       - gpsd-clients
       - socat
+      - tightvncserver
+      - xrdp
+      - xorgxrdp
+      - xfonts-base
+      - menu
+      - gnome-keyring
+      - jed
       - opencpn
       - opencpn-plugin-weatherrouting
       - opencpn-plugin-iacfleet
@@ -99,17 +107,15 @@ navpipkgs:
 #      - cdo
       - zygrib
 #      - zygrib-maps
-      - chromium-browser
-      - tightvncserver
-      - menu
-      - gnome-keyring
 ###      - network-manager-gnome
-      - xrdp
-      - xfonts-base
-      - lxde
-      - jed
 ## Bionic fix:     
 ##      - python-dev
+{% if grains['os'] == 'Ubuntu' %}
+      - chromium-browser
+{% else %}
+      - chromium
+#      - chromium-l10n
+{% endif %}
     - require:
       - pkgrepo: opencpn-repo
 
@@ -140,10 +146,24 @@ hostapd:
   file.managed:
     - source: salt://navpi/interfaces
 
+{% if grains['os'] == 'Ubuntu' %}
 /etc/resolv.conf:
   file.symlink:
       - target: /run/systemd/resolve/stub-resolv.conf
       - force: True
+{% endif %}
+
+# if-up/down scripts does not work anymore. Install fw script, but
+# rely on iptables-persistent to save, start and update.
+# See http://www.microhowto.info/howto/make_the_configuration_of_iptables_persistent_on_debian.html
+
+/etc/network/if-up.d/fw.sh:
+  file.managed:
+      - source: salt://navpi/fw.sh
+
+iptables-persistent:
+  pkg.installed
+
 
 /usr/local/bin/yrgrib:
   file.managed:
