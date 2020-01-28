@@ -1,7 +1,7 @@
 {% from "salt/package-map.jinja" import pkgs with context %}
 
 salt-minion:
-  pkg.installed:
+  pkg.latest:
     - name: {{ pkgs['salt-minion'] }}
 {%- if grains['os_family'] == 'Windows' %}
   file.managed:

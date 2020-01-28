@@ -33,6 +33,7 @@ set-fqdn:
 {{ fqdn }}-host-entry:
   host.present:
     - ip: 127.0.0.1
+    - clean: true
     - names:
       - {{ fqdn }}
 

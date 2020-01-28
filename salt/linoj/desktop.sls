@@ -15,7 +15,7 @@ desktoppkgs:
 #      - ssh
 
 # 60 is default. Desktop could benefit from lower ( 10?). Should be a pillar value.
-vm.swappiness:
-  sysctl.present:
-    - value: 60
+#vm.swappiness:
+#  sysctl.present:
+#    - value: 60
 
