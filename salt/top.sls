@@ -1,5 +1,6 @@
 base:
   '*':
+    - salt.pkgrepo
     - salt.minion
     - roles
     - all

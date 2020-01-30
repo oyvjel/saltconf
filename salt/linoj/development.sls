@@ -17,13 +17,14 @@ developmentpkgs:
       - gconf-editor
       - subversion
       - git-svn
-      - eclipse
-      - eclipse-anyedit
-      - eclipse-cdt
-      - eclipse-cdt-autotools
-#      - eclipse-cdt-pkg-config
-#      - eclipse-gef
-#      - eclipse-jdt
+# Eclipse from formula, package version does not work in Ubuntu
+#      - eclipse
+#      - eclipse-anyedit
+#      - eclipse-cdt
+#      - eclipse-cdt-autotools
+##      - eclipse-cdt-pkg-config
+##      - eclipse-gef
+##      - eclipse-jdt
       
 #      - qemu-kvm-spice
 #      - python-spice-client-gtk
