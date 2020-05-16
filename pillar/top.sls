@@ -4,17 +4,18 @@
 {% set hostfile=grains['id']|replace(".","_") %}
 
 base:
-#  '*':
+  '*':
+    - mine
 #    - user.oyvind
 #    - testprod
 
 # Include the individual host-specific pillar-files if they exist:
-{% if salt['file.file_exists']('/srv/base/pillar/byid/' + hostfile + '/cmdb.sls') %}
+{% if salt['file.file_exists']('/srv/pillar/byid/' + hostfile + '/cmdb.sls') %}
   '{{hostname}}':
     - byid.{{ hostfile }}.cmdb
 {% endif %}
 
-{% if salt['file.file_exists']('/srv/base/pillar/byid/' + hostfile + '.sls') %}
+{% if salt['file.file_exists']('/srv/pillar/byid/' + hostfile + '.sls') %}
   '{{hostname}}':
     - byid.{{ hostfile }}
 {% endif %}
@@ -26,7 +27,9 @@ base:
   'gitlabformula*':
     - gitlab
 
-
+  'kub*':
+    - user.oyvind
+    
 #  'saltmaster*':
 #    - development
 

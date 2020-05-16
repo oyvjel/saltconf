@@ -1,6 +1,6 @@
 base:
   '*':
-    - salt.pkgrepo
+#    - salt.pkgrepo
     - salt.minion
     - roles
     - all
@@ -34,6 +34,9 @@ base:
   'kernel:windows':
     - match: grain
     - win
+
+  'kub*':
+    - kubernetes
 
   'munin_node:*':
     - match: pillar

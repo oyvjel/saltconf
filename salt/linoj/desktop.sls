@@ -11,6 +11,7 @@ desktoppkgs:
     - names:
       - vim
       - gnome
+      - keepassx
 #      - git
 #      - ssh
 

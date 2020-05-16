@@ -15,6 +15,7 @@ developmentpkgs:
       - debhelper
       - dconf-tools
       - gconf-editor
+      - mkdocs
       - subversion
       - git-svn
 # Eclipse from formula, package version does not work in Ubuntu
