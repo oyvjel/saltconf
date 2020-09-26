@@ -11,6 +11,7 @@ developmentpkgs:
     - names:
       - build-essential
       - devscripts
+      - cmake
       - fakeroot
       - debhelper
       - dconf-tools

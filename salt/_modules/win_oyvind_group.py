@@ -18,7 +18,7 @@ def __virtual__():
     '''
     Set the group module if the kernel is Windows
     '''
-    return __virtualname__ if salt.utils.is_windows() else False
+    return __virtualname__ if salt.utils.platform.is_windows() else False
 
 
 def add(name, gid=None, system=False):

@@ -11,6 +11,9 @@ desktoppkgs:
     - names:
       - vim
       - gnome
+      - chrome-gnome-shell
+      - gnome-tweak-tool
+      - cairo-dock
       - keepassx
 #      - git
 #      - ssh

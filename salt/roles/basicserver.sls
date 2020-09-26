@@ -40,6 +40,7 @@ basicserverpkgs:
       - emacs
 {% if grains['os_family'] == 'Debian' %}
       - atop
+      - rsync
       - ncdu
       - dnsutils
       - yaml-mode

@@ -50,3 +50,15 @@ corepkgs:
     - user: root
     - group: root
     - mode: 755
+
+{% if grains['osfinger'] == 'Kali-2020' or grains['osfinger'] == 'Debian-10'%}
+# Fix missing path bug ( debian 10?)
+# Bug results in salt-call not able to find commands due to su and sudo missing PATH.
+# Remote salt * ... is OK.
+/etc/login.defs:
+  file.line:
+      - mode: ensure
+      - content: ALWAYS_SET_PATH yes
+      - after: ^ENV_PATH\s*PATH=
+
+{% endif %}

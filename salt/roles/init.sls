@@ -16,8 +16,8 @@ include:
 
 
 rm_roles:
-  grains.absent:
-    - name: roles:test
+  grains.list_absent:
+    - value: test
 
 # Set corresponding grain on minion from pillar.role[]
 # Targeting in top.sls should use the grain roles[] except for config that
@@ -26,7 +26,7 @@ rm_roles:
 {% set rl = salt['pillar.get']('role',[]) %}
 {% if rl %}
 roles:
-  grains.present:
+  grains.list_present:
     - value:
 {% for r in rl %}
       - {{ r }}
